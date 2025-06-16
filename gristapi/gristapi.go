@@ -166,7 +166,7 @@ func httpPost(myRequest string, data string) (string, int) {
 	return body, status
 }
 
-// Sends an HTTP POST request to Grist's REST API with a data load
+// Sends an HTTP PATCH request to Grist's REST API with a data load
 // Return the response body
 func httpPatch(myRequest string, data string) (string, int) {
 	dataBody := bytes.NewBuffer([]byte(data))
@@ -325,6 +325,18 @@ func GetDocAccess(docId string) EntityAccess {
 	response, _ := httpGet(url, "")
 	json.Unmarshal([]byte(response), &lstUsers)
 	return lstUsers
+}
+
+// Move a document in a workspace
+func MoveDoc(docId string, workspaceId int) {
+	url := "docs/" + docId + "/move"
+	data := fmt.Sprintf(`{"workspace": "%d"}`, workspaceId)
+	_, status := httpPatch(url, data)
+	if status == http.StatusOK {
+		fmt.Printf("Document moved to workspace %d ✅\n", workspaceId)
+	} else {
+		fmt.Printf("Unable to move document")
+	}
 }
 
 // Purge a document's history, to retain only the last modifications
