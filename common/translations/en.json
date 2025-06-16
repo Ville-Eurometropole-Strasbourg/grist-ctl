@@ -35,6 +35,7 @@
         "docExportCsv": "export document's table as CSV in stdout",
         "docExportExcel": "export document as <workspace name>_<doc name>.xlsx Excel file",
         "docExportGrist": "export document as <workspace name>_<doc name>.grist Grist file",
+        "allDocsMove": "moves all documents from a workspace to another",
         "docMove": "moves a document in a workspace",
         "docPurge": "purges document history (retains last 3 operations by default)",
         "orgDesc": "organization description",

@@ -55,6 +55,7 @@ func Help() {
 		{"[-o=json/table] get workspace <id>", common.T("help.workspaceDesc")},
 		{"import users", common.T("help.userImport")},
 		{"move doc <id> workspace <workspaceId>", common.T("help.docMove")},
+		{"move docs from <workspaceId> to <workspaceId>", common.T("help.allDocsMove")},
 		{"purge doc <id> [<number of states to keep>]", common.T("help.docPurge")},
 		{"version", common.T("help.version")},
 	}
@@ -855,4 +856,17 @@ func MoveDoc(docId string, workspaceId int) {
 			gristapi.MoveDoc(docId, workspaceId)
 		}
 	}
+}
+
+// Move all documents from a workspace to another
+func MoveAllDocs(fromWorkspaceId int, toWorkspaceId int) {
+	from_ws := gristapi.GetWorkspace(fromWorkspaceId)
+	to_ws := gristapi.GetWorkspace(toWorkspaceId)
+
+	if from_ws.Id == 0 || to_ws.Id == 0 {
+		fmt.Printf("❗️ Workspace %d not found ❗️\n", from_ws)
+	} else {
+		gristapi.MoveAllDocs(fromWorkspaceId, toWorkspaceId)
+	}
+
 }

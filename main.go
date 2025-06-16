@@ -139,6 +139,22 @@ func main() {
 						}
 						gristapi.MoveDoc(docId, workspaceId)
 					}
+				case "docs":
+					fromWorkspaceId := 0
+					toWorkspaceId := 0
+					fromId, err := strconv.Atoi(args[3])
+					if err == nil {
+						fromWorkspaceId = fromId
+					} else {
+						gristtools.Help()
+					}
+					toId, err := strconv.Atoi(args[5])
+					if err == nil {
+						toWorkspaceId = toId
+					} else {
+						gristtools.Help()
+					}
+					gristapi.MoveAllDocs(fromWorkspaceId, toWorkspaceId)
 				default:
 					gristtools.Help()
 				}
