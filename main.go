@@ -122,6 +122,44 @@ func main() {
 				}
 			}
 		}
+	case "move":
+		{
+			if len(args) > 2 {
+				switch args[1] {
+				case "doc":
+					docId := args[2]
+					switch args[3] {
+					case "workspace":
+						workspaceId := 0
+						id, err := strconv.Atoi(args[4])
+						if err == nil {
+							workspaceId = id
+						} else {
+							gristtools.Help()
+						}
+						gristapi.MoveDoc(docId, workspaceId)
+					}
+				case "docs":
+					fromWorkspaceId := 0
+					toWorkspaceId := 0
+					fromId, err := strconv.Atoi(args[3])
+					if err == nil {
+						fromWorkspaceId = fromId
+					} else {
+						gristtools.Help()
+					}
+					toId, err := strconv.Atoi(args[5])
+					if err == nil {
+						toWorkspaceId = toId
+					} else {
+						gristtools.Help()
+					}
+					gristapi.MoveAllDocs(fromWorkspaceId, toWorkspaceId)
+				default:
+					gristtools.Help()
+				}
+			}
+		}
 	case "purge":
 		{
 			if len(args) > 2 {

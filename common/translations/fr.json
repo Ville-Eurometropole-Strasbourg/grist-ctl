@@ -36,6 +36,8 @@
         "docExportCsv": "exporter la table d'un document au format CSV sur la sortie standard",
         "docExportExcel": "exporter un document au format Excel (fichier '<workspace name>_<doc name>.xlsx')",
         "docExportGrist": "exporter un document au format Grist (fichier '<workspace name>_<doc name>.grist')",
+        "allDocsMove": "déplacer tous les documents d'un espace de travail à un autre",
+        "docMove": "déplacer un document dans un espace de travail",
         "docPurge": "purger l'historique d'un document (en conservant par défaut les 3 dernières opérations)",
         "orgDesc": "afficher la description de l'organisation",
         "orgList": "lister des organisations",
