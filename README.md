@@ -371,6 +371,18 @@ cat ga_grist_pa.csv | awk -F',' 'NR>1 {gsub(/"/, "", $0); print tolower($1)";3;"
 cat ga_grist_pa.csv | awk -F',' 'NR>1 {gsub(/"/, "", $0); print tolower($1)";3;"$2"/"$3" : Commun;editors"}' | gristctl import users
 ```
 
+<details>
+   <summary>Windows</summary>
+   
+   ```powershell
+      (Get-Content ".\ga_grist_pu.csv" -Encoding UTF8) | ForEach-Object {$_ -replace '"',''} | awk -F',' 'NR>1 {print tolower($1)\";3;\"$2\" : Commun;viewers\"}' | gristctl import users
+      (Get-Content ".\ga_grist_pu.csv" -Encoding UTF8) | ForEach-Object {$_ -replace '"',''} | awk -F',' 'NR>1 {print tolower($1)\";3;\"$2\"/\"$3\" : Commun;viewers\"}'| gristctl import users               
+      (Get-Content ".\ga_grist_pa.csv" -Encoding UTF8) | ForEach-Object {$_ -replace '"',''} | awk -F',' 'NR>1 {print tolower($1)\";3;\"$2\" : Commun;editors\"}'| gristctl import users
+      (Get-Content ".\ga_grist_pa.csv" -Encoding UTF8) | ForEach-Object {$_ -replace '"',''} | awk -F',' 'NR>1 {print tolower($1)\";3;\"$2\"/\"$3\" : Commun;editors\"}'| gristctl import users
+   ```
+
+</details>
+
 ## Contributing
 
 We welcome contributions to gristctl. If you find a bug or want to improve the tool, feel free to open an issue or submit a pull request.
