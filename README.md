@@ -16,9 +16,11 @@ SPDX-License-Identifier: MIT
 **gristctl** is a command-line utility designed for interacting with Grist. It allows users to automate and manage tasks related to Grist documents, including creating, updating, listing, deleting documents, and retrieving data from them.
 
 <div align="center">
+
 [Installation](#installation) •
 [Configuration](#configuration) •
 [Usage](#usage)
+
 </div>
 
 ## Installation
