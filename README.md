@@ -31,9 +31,12 @@ Download exec files from [release](https://github.com/Ville-Eurometropole-Strasb
 
 <details>
    <summary>Windows</summary>
+
    > That means you can either:
+   >
    > - copy the `gristctl.exe` into a directory that is in your PATH
    > - add the directory that contains `gristctl.exe` in your PATH environment variable
+
 </details>
 
 ### Installing from Source
@@ -71,17 +74,22 @@ To install `gristctl` from source:
 
 <details>
    <summary>Windows</summary>
+
    > That means you can either:
+   >
    > - copy the `gristctl.exe` into a directory that is in your PATH
    > - add the directory that contains `gristctl.exe` in your PATH environment variable
+
 </details>
 
 <details>
    <summary>Linux/macOS</summary>
-   > Exemple:
+
+   > Example:
    > ```bash
    > sudo mv gristctl /usr/local/bin/
    > ```
+
 </details>
 
 ## Configuration
@@ -363,7 +371,7 @@ foreach ($grp in ('a', 'u')) {
 ```
 
 <details>
-   <summary>Using this file with bash</summary>
+   <summary>Using this files with bash (Unix)</summary>
 
    ```bash
    dos2unix ga_grist_pu.csv
@@ -377,7 +385,7 @@ foreach ($grp in ('a', 'u')) {
 </details>
 
 <details>
-   <summary>Using this file with PowerShell</summary>
+   <summary>Using this files with PowerShell (Windows)</summary>
 
    ```powershell
       ( Import-Csv "ga_grist_pu.csv" -Header @("email", "service", "direction") | Select-Object -Skip 1 | ForEach-Object { "$($_.email.ToLower());3;$($_.service) : Commun;viewers" }) | gristctl import users
