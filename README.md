@@ -390,10 +390,10 @@ foreach ($grp in ('a', 'u')) {
    <summary>Using this files with PowerShell (Windows)</summary>
 
    ```powershell
-      ( Import-Csv "ga_grist_pu.csv" -Header @("email", "service", "direction") | Select-Object -Skip 1 | ForEach-Object { "$($_.email.ToLower());3;$($_.service) : Commun;viewers" }) | gristctl import users
-      ( Import-Csv "ga_grist_pu.csv" -Header @("email", "service", "direction") | Select-Object -Skip 1 | ForEach-Object { "$($_.email.ToLower());3;$($_.direction) : Commun;viewers" }) | gristctl import users
-      ( Import-Csv "ga_grist_pa.csv" -Header @("email", "service", "direction") | Select-Object -Skip 1 | ForEach-Object { "$($_.email.ToLower());3;$($_.service) : Commun;editors" }) | gristctl import users
-      ( Import-Csv "ga_grist_pa.csv" -Header @("email", "service", "direction") | Select-Object -Skip 1 | ForEach-Object { "$($_.email.ToLower());3;$($_.direction) : Commun;editors" }) | gristctl import users
+   ( Import-Csv "ga_grist_pu.csv" -Header @("email", "direction", "service") | Select-Object -Skip 1 | ForEach-Object { "$($_.email.ToLower());3;$($_.direction)/$($_.service) : Commun;viewers" }) | .\gristctl.exe import users
+   ( Import-Csv "ga_grist_pu.csv" -Header @("email", "direction", "service") | Select-Object -Skip 1 | ForEach-Object { "$($_.email.ToLower());3;$($_.direction) : Commun;viewers" }) | .\gristctl.exe import users
+   ( Import-Csv "ga_grist_pa.csv" -Header @("email", "direction", "service") | Select-Object -Skip 1 | ForEach-Object { "$($_.email.ToLower());3;$($_.direction)/$($_.service) : Commun;editors" }) | .\gristctl.exe import users
+   ( Import-Csv "ga_grist_pa.csv" -Header @("email", "direction", "service") | Select-Object -Skip 1 | ForEach-Object { "$($_.email.ToLower());3;$($_.direction) : Commun;editors" }) | .\gristctl.exe import users
    ```
 
 </details>
