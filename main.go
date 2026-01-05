@@ -8,8 +8,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	"gristctl/gristapi"
-	"gristctl/gristtools"
+	"github.com/Ville-Eurometropole-Strasbourg/grist-ctl/gristapi"
+	"github.com/Ville-Eurometropole-Strasbourg/grist-ctl/gristtools"
 	"strconv"
 )
 

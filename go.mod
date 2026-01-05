@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-module gristctl
+module github.com/Ville-Eurometropole-Strasbourg/grist-ctl
 
 go 1.23.3
 
