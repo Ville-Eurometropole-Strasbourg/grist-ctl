@@ -364,11 +364,11 @@ gristctl delete workspace 676
 
 ### Import users from an ActiveDirectory directory
 
-Extract the list of members of AD groups GA_GRIST_PU and GA_GRIST_PA :
+Extract the list of members of AD groups grist_viewers and grist_editors :
 
 ```powershell
 foreach ($grp in ('a', 'u')) {
-    get-adgroupmember ga_grist_p$grp | get-aduser -properties mail, extensionAttribute6, extensionAttribute15 |select-object mail, extensionAttribute6, extensionAttribute15 | export-csv -Path ga_grist_p$grp.csv -NoTypeInformation -Encoding:UTF8
+    get-adgroupmember grist_$grp | get-aduser -properties mail, extensionAttribute6, extensionAttribute15 |select-object mail, extensionAttribute6, extensionAttribute15 | export-csv -Path grist_$grp.csv -NoTypeInformation -Encoding:UTF8
 }
 ```
 
@@ -376,12 +376,12 @@ foreach ($grp in ('a', 'u')) {
    <summary>Using this files with bash (Unix)</summary>
 
    ```bash
-   dos2unix ga_grist_pu.csv
-   dos2unix ga_grist_pa.csv
-   cat ga_grist_pu.csv | awk -F',' 'NR>1 {gsub(/"/, "", $0); print tolower($1)";3;"$2" : Commun;viewers"}' | gristctl import users
-   cat ga_grist_pu.csv | awk -F',' 'NR>1 {gsub(/"/, "", $0); print tolower($1)";3;"$2"/"$3" : Commun;viewers"}' | gristctl import users
-   cat ga_grist_pa.csv | awk -F',' 'NR>1 {gsub(/"/, "", $0); print tolower($1)";3;"$2" : Commun;editors"}' | gristctl import users
-   cat ga_grist_pa.csv | awk -F',' 'NR>1 {gsub(/"/, "", $0); print tolower($1)";3;"$2"/"$3" : Commun;editors"}' | gristctl import users
+   dos2unix grist_viewers.csv
+   dos2unix grist_editors.csv
+   cat grist_viewers.csv | awk -F',' 'NR>1 {gsub(/"/, "", $0); print tolower($1)";3;"$2" : Commun;viewers"}' | gristctl import users
+   cat grist_viewers.csv | awk -F',' 'NR>1 {gsub(/"/, "", $0); print tolower($1)";3;"$2"/"$3" : Commun;viewers"}' | gristctl import users
+   cat grist_editors.csv | awk -F',' 'NR>1 {gsub(/"/, "", $0); print tolower($1)";3;"$2" : Commun;editors"}' | gristctl import users
+   cat grist_editors.csv | awk -F',' 'NR>1 {gsub(/"/, "", $0); print tolower($1)";3;"$2"/"$3" : Commun;editors"}' | gristctl import users
    ```
 
 </details>
@@ -390,10 +390,10 @@ foreach ($grp in ('a', 'u')) {
    <summary>Using this files with PowerShell (Windows)</summary>
 
    ```powershell
-   ( Import-Csv "ga_grist_pu.csv" -Header @("email", "direction", "service") | Select-Object -Skip 1 | ForEach-Object { "$($_.email.ToLower());3;$($_.direction)/$($_.service) : Commun;viewers" }) | .\gristctl.exe import users
-   ( Import-Csv "ga_grist_pu.csv" -Header @("email", "direction", "service") | Select-Object -Skip 1 | ForEach-Object { "$($_.email.ToLower());3;$($_.direction) : Commun;viewers" }) | .\gristctl.exe import users
-   ( Import-Csv "ga_grist_pa.csv" -Header @("email", "direction", "service") | Select-Object -Skip 1 | ForEach-Object { "$($_.email.ToLower());3;$($_.direction)/$($_.service) : Commun;editors" }) | .\gristctl.exe import users
-   ( Import-Csv "ga_grist_pa.csv" -Header @("email", "direction", "service") | Select-Object -Skip 1 | ForEach-Object { "$($_.email.ToLower());3;$($_.direction) : Commun;editors" }) | .\gristctl.exe import users
+   ( Import-Csv "grist_viewers.csv" -Header @("email", "direction", "service") | Select-Object -Skip 1 | ForEach-Object { "$($_.email.ToLower());3;$($_.direction)/$($_.service) : Commun;viewers" }) | .\gristctl.exe import users
+   ( Import-Csv "grist_viewers.csv" -Header @("email", "direction", "service") | Select-Object -Skip 1 | ForEach-Object { "$($_.email.ToLower());3;$($_.direction) : Commun;viewers" }) | .\gristctl.exe import users
+   ( Import-Csv "grist_editors.csv" -Header @("email", "direction", "service") | Select-Object -Skip 1 | ForEach-Object { "$($_.email.ToLower());3;$($_.direction)/$($_.service) : Commun;editors" }) | .\gristctl.exe import users
+   ( Import-Csv "grist_editors.csv" -Header @("email", "direction", "service") | Select-Object -Skip 1 | ForEach-Object { "$($_.email.ToLower());3;$($_.direction) : Commun;editors" }) | .\gristctl.exe import users
    ```
 
 </details>
